@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.privatebusiness.KozySound.model.Album" table="ALBUMS">
+		<id name="albumId" type="int" column="ID">
+			<generator class="increment"/>
+		</id>
+		<property name="albumName" type="string">
+			<column name="NAME" length="256" not-null="true"/>
+		</property>
+		<property name="albumYear" type="int">
+			<column name="YEAR" length="4" not-null="false"/>
+		</property>
+		<set name="tracks" table="TRACKS_IN_ALBUM" cascade="all">
+			<key column="ID_ALBUMS" />
+			<many-to-many column="ID_TRACKS" class="com.privatebusiness.KozySound.model.Track" />
+		</set>
+	</class>
+</hibernate-mapping>
